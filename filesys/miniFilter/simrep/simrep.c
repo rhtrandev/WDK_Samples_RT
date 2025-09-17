@@ -1219,30 +1219,29 @@ Return Value:
     PAGED_CODE();
 
     if ( FlagOn( Flags, FLTFL_INSTANCE_SETUP_AUTOMATIC_ATTACHMENT ) ) {
-
         //
-        //  Do not automatically attach to a volume.
+        //  Attach on manual attachment.
         //
 
-        DebugTrace( DEBUG_TRACE_INSTANCES,
-                    ("[Simrep]: Instance setup skipped (Volume = %p, Instance = %p)\n",
-                    FltObjects->Volume,
-                    FltObjects->Instance) );
+        DebugTrace(DEBUG_TRACE_INSTANCES,
+            ("[SimRep]: Instance setup started (Volume = %p, Instance = %p)\n",
+                FltObjects->Volume,
+                FltObjects->Instance));
 
-        return STATUS_FLT_DO_NOT_ATTACH;
+
+        return STATUS_SUCCESS;
     }
 
     //
-    //  Attach on manual attachment.
+    //  Do not automatically attach to a volume.
     //
 
     DebugTrace( DEBUG_TRACE_INSTANCES,
-                ("[SimRep]: Instance setup started (Volume = %p, Instance = %p)\n",
-                 FltObjects->Volume,
-                 FltObjects->Instance) );
+                ("[Simrep]: Instance setup skipped (Volume = %p, Instance = %p)\n",
+                FltObjects->Volume,
+                FltObjects->Instance) );
 
-
-    return STATUS_SUCCESS;
+    return STATUS_FLT_DO_NOT_ATTACH;
 }
 
 
